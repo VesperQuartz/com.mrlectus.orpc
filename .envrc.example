@@ -1,0 +1,8 @@
+export NODE_ENV=development
+export API_URL="https://my-app.local:5141"
+export BETTER_AUTH_SECRET=
+export BETTER_AUTH_URL=https://my-app.local:5141
+export DATABASE_URL=""
+export VITE_PUBLIC_API_URL=""
+export LOG_LEVEL="debug"
+export LOG_PRETTY="true"

@@ -1,11 +1,13 @@
-import { env } from "@repo/shared";
+import { env } from "@workspace/shared";
 import { drizzle } from "drizzle-orm/neon-http";
-import * as schema from "./schema";
+import { authRelations } from "./schema";
 
 export const db = drizzle({
-	schema,
-	connection: {
-		connectionString: String(env.DATABASE_URL),
-	},
-	logger: true,
+  relations: {
+    ...authRelations,
+  },
+  connection: {
+    connectionString: String(env.DATABASE_URL),
+  },
+  logger: true,
 });
