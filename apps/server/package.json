@@ -1,0 +1,23 @@
+{
+	"name": "@workspace/server",
+	"type": "module",
+	"scripts": {
+		"build": "tsdown",
+		"serve": "bun run src/index.ts",
+		"watch": "bun run --watch src/index.ts",
+		"lint": "biome check"
+	},
+	"dependencies": {
+		"@workspace/orpc": "workspace:*"
+	},
+	"devDependencies": {
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^6"
+	},
+	"exports": {
+		".": "./dist/index.mjs",
+		"./package.json": "./package.json"
+	}
+}
