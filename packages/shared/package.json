@@ -3,9 +3,9 @@
 	"type": "module",
 	"types": "./dist/index.d.mts",
 	"devDependencies": {
-		"@workspace/typescript-config": "workspace:*",
 		"@types/bun": "latest",
-		"@types/node": "^26.1.0"
+		"@types/node": "^26.4.1",
+		"@workspace/typescript-config": "workspace:*"
 	},
 	"scripts": {
 		"build": "tsdown",
@@ -18,8 +18,9 @@
 		"./package.json": "./package.json"
 	},
 	"dependencies": {
-		"@tanstack/react-query": "^5.101.2",
-		"tsx": "^4.22.5",
-		"zod": "^4.4.3"
+		"@tanstack/react-query": "^5.102.8",
+		"better-result": "^3.0.1",
+		"tsx": "^4.23.13",
+		"zod": "^4.5.4"
 	}
 }

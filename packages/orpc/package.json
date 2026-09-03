@@ -13,16 +13,17 @@
 		"typescript": "^6"
 	},
 	"dependencies": {
-		"@orpc/client": "^1.14.7",
-		"@orpc/openapi": "^1.14.7",
-		"@orpc/server": "^1.14.7",
-		"@orpc/shared": "^1.14.7",
-		"@orpc/zod": "^1.14.7",
+		"@orpc/client": "^1.15.0",
+		"@orpc/openapi": "^1.15.0",
+		"@orpc/server": "^1.15.0",
+		"@orpc/shared": "^1.15.0",
+		"@orpc/zod": "^1.15.0",
 		"@workspace/auth": "workspace:*",
 		"@workspace/shared": "workspace:*",
-		"effect": "^3.21.4",
+		"better-result": "^3.0.1",
+		"effect": "^3.22.1",
 		"superjson": "^2.2.6",
-		"zod": "^4.4.3"
+		"zod": "^4.5.4"
 	},
 	"exports": {
 		".": "./dist/index.mjs",

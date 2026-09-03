@@ -15,12 +15,14 @@
 		"auth:generate": "pnpm dlx auth@latest generate --output ../storage/src/schema/auth.schema.ts --config ./src/lib/auth.ts"
 	},
 	"devDependencies": {
-		"@workspace/typescript-config": "workspace:*",
-		"@types/bun": "latest"
+		"@types/bun": "latest",
+		"@workspace/typescript-config": "workspace:*"
 	},
 	"dependencies": {
+		"@better-auth/drizzle-adapter": "^1.7.2",
 		"@workspace/shared": "workspace:*",
 		"@workspace/storage": "workspace:*",
-		"better-auth": "^1.6.23"
+		"better-auth": "^1.7.2",
+		"better-result": "^3.0.1"
 	}
 }

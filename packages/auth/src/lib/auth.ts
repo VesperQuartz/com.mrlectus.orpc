@@ -1,6 +1,6 @@
+import { drizzleAdapter } from "@better-auth/drizzle-adapter/relations-v2";
 import { db } from "@workspace/storage";
 import { type BetterAuthOptions, betterAuth } from "better-auth";
-import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import {
 	admin as adminPlugin,
 	bearer,
