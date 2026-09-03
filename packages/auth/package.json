@@ -1,26 +1,29 @@
 {
-	"name": "@workspace/auth",
-	"type": "module",
-	"types": "./dist/index.d.mts",
-	"exports": {
-		".": "./dist/index.mjs",
-		"./lib": "./dist/lib/index.mjs",
-		"./lib/auth": "./dist/lib/auth.mjs",
-		"./lib/permission": "./dist/lib/permission.mjs",
-		"./package.json": "./package.json"
-	},
-	"scripts": {
-		"build": "tsdown",
-		"lint": "biome check",
-		"auth:generate": "pnpm dlx auth@latest generate --output ../storage/src/schema/auth.schema.ts --config ./src/lib/auth.ts"
-	},
-	"devDependencies": {
-		"@workspace/typescript-config": "workspace:*",
-		"@types/bun": "latest"
-	},
-	"dependencies": {
-		"@workspace/shared": "workspace:*",
-		"@workspace/storage": "workspace:*",
-		"better-auth": "^1.6.23"
-	}
+  "name": "@workspace/auth",
+  "type": "module",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./lib": "./dist/lib/index.mjs",
+    "./lib/auth": "./dist/lib/auth.mjs",
+    "./lib/permission": "./dist/lib/permission.mjs",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "vp pack",
+    "test": "vp test run",
+    "lint": "vp check --fix",
+    "auth:generate": "pnpm dlx auth@latest generate --output ../storage/src/schema/auth.schema.ts --config ./src/lib/auth.ts"
+  },
+  "dependencies": {
+    "@better-auth/drizzle-adapter": "^1.7.13",
+    "@workspace/shared": "workspace:*",
+    "@workspace/storage": "workspace:*",
+    "better-auth": "^1.7.13",
+    "better-result": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@workspace/typescript-config": "workspace:*"
+  }
 }

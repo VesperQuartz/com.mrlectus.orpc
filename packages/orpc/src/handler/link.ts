@@ -1,24 +1,21 @@
-import type { ClientContext } from "@orpc/client";
-import type { LinkFetchClientOptions } from "@orpc/client/fetch";
-import { LinkFetchClient } from "@orpc/client/fetch";
-import type {
-	StandardLinkOptions,
-	StandardRPCLinkCodecOptions,
-} from "@orpc/client/standard";
-import { StandardLink, StandardRPCLinkCodec } from "@orpc/client/standard";
-import { SuperJSONSerializer } from "#/handler";
+import { createORPCClient } from "@orpc/client";
+import { OpenAPILink } from "@orpc/openapi/fetch";
+import type { RouterClient } from "@orpc/server";
+import { createTanstackQueryUtils } from "@orpc/tanstack-query";
+import { API_PREFIX } from "#/config";
+import { linkPlugins } from "#/plugins/link";
+import { router } from "#/router";
 
-export interface SuperJSONLinkOptions<T extends ClientContext>
-	extends LinkFetchClientOptions<T>,
-		Omit<StandardLinkOptions<T>, "plugins">,
-		StandardRPCLinkCodecOptions<T> {}
+export const link = new OpenAPILink(router, {
+  url: API_PREFIX,
+  fetch: (request, init) =>
+    globalThis.fetch(request, {
+      ...init,
+      credentials: "include",
+    }),
+  plugins: linkPlugins,
+});
 
-export class SuperJSONLink<T extends ClientContext> extends StandardLink<T> {
-	constructor(options: SuperJSONLinkOptions<T>) {
-		const linkClient = new LinkFetchClient(options);
-		const serializer = new SuperJSONSerializer();
-		const linkCodec = new StandardRPCLinkCodec(serializer as any, options);
+export const client: RouterClient<typeof router> = createORPCClient(link);
 
-		super(linkCodec, linkClient, options);
-	}
-}
+export const orpc = createTanstackQueryUtils(client);

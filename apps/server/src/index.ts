@@ -1,13 +1,13 @@
-import { orpc, server } from "@workspace/orpc";
+import { auth } from "@workspace/auth";
+import { fetch } from "@workspace/orpc";
 
 const serve = Bun.serve({
 	routes: {
-		"/api/hello": async () => {
-			const data = await orpc.planet.list({});
-			return Response.json(data);
-		},
-		"/api/rpc/*": async (options) => server(options),
+		// Better Auth owns its whole subtree (default base path: /api/auth).
+		"/api/auth/*": (request) => auth.handler(request),
 	},
+	// Fallback for everything not matched above (oRPC at /api).
+	fetch,
 	tls: {
 		key: Bun.file("key.pem"),
 		cert: Bun.file("cert.pem"),

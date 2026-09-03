@@ -1,8 +1,12 @@
+import "@orpc/openapi/extensions/route";
+import type { LoggerContext } from "@orpc/pino";
 import { os } from "@orpc/server";
 import type {
-	RequestHeadersPluginContext,
-	ResponseHeadersPluginContext,
+  RequestHeadersPluginContext,
+  ResponseHeadersPluginContext,
 } from "@orpc/server/plugins";
 
-type ORPCContext = RequestHeadersPluginContext & ResponseHeadersPluginContext;
+export interface ORPCContext
+  extends RequestHeadersPluginContext, ResponseHeadersPluginContext, LoggerContext {}
+
 export const base = os.$context<ORPCContext>();

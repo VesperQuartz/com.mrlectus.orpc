@@ -1,6 +1,6 @@
-import { defineConfig } from "tsdown";
+import { defineConfig } from "vite-plus/pack";
 
 export default defineConfig({
-	entry: ["src/**"],
-	exports: true,
+  entry: ["src/**"],
+  exports: true,
 });

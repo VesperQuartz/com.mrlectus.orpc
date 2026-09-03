@@ -1,29 +1,32 @@
 {
-	"name": "@workspace/storage",
-	"type": "module",
-	"types": "./dist/index.d.mts",
-	"devDependencies": {
-		"@workspace/typescript-config": "workspace:*",
-		"@types/bun": "latest",
-		"drizzle-kit": "^0.31.10",
-		"tsx": "^4.23.13"
-	},
-	"scripts": {
-		"build": "tsdown",
-		"db:push": "drizzle-kit push",
-		"db:migrate": "drizzle-kit migrate",
-		"db:generate": "drizzle-kit generate"
-	},
-	"exports": {
-		".": "./dist/index.mjs",
-		"./schema": "./dist/schema/index.mjs",
-		"./schema/auth.schema": "./dist/schema/auth.schema.mjs",
-		"./schema/todo": "./dist/schema/todo.mjs",
-		"./package.json": "./package.json"
-	},
-	"dependencies": {
-		"@neondatabase/serverless": "^1.1.0",
-		"@workspace/shared": "workspace:*",
-		"drizzle-orm": "^0.45.2"
-	}
+  "name": "@workspace/storage",
+  "type": "module",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./schema": "./dist/schema/index.mjs",
+    "./schema/auth.schema": "./dist/schema/auth.schema.mjs",
+    "./schema/todo": "./dist/schema/todo.mjs",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "vp pack",
+    "test": "vp test run",
+    "lint": "vp check --fix",
+    "db:push": "drizzle-kit push",
+    "db:migrate": "drizzle-kit migrate",
+    "db:generate": "drizzle-kit generate"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.2.0",
+    "@workspace/shared": "workspace:*",
+    "better-result": "^3.0.1",
+    "drizzle-orm": "1.0.0-rc.4"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@workspace/typescript-config": "workspace:*",
+    "drizzle-kit": "1.0.0-rc.4",
+    "tsx": "^4.23.15"
+  }
 }

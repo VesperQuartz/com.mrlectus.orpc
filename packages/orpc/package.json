@@ -1,37 +1,53 @@
 {
-	"name": "@workspace/orpc",
-	"type": "module",
-	"scripts": {
-		"build": "tsdown",
-		"lint": "biome check"
-	},
-	"devDependencies": {
-		"@types/bun": "latest",
-		"@workspace/typescript-config": "workspace:*"
-	},
-	"peerDependencies": {
-		"typescript": "^6"
-	},
-	"dependencies": {
-		"@orpc/client": "^1.14.7",
-		"@orpc/openapi": "^1.14.7",
-		"@orpc/server": "^1.14.7",
-		"@orpc/shared": "^1.14.7",
-		"@orpc/zod": "^1.14.7",
-		"@workspace/auth": "workspace:*",
-		"@workspace/shared": "workspace:*",
-		"effect": "^3.21.4",
-		"superjson": "^2.2.6",
-		"zod": "^4.4.3"
-	},
-	"exports": {
-		".": "./dist/index.mjs",
-		"./base": "./dist/base/index.mjs",
-		"./handler": "./dist/handler/index.mjs",
-		"./handler/link": "./dist/handler/link.mjs",
-		"./handler/superjson": "./dist/handler/superjson.mjs",
-		"./middleware": "./dist/middleware/index.mjs",
-		"./router": "./dist/router/index.mjs",
-		"./package.json": "./package.json"
-	}
+  "name": "@workspace/orpc",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./base": "./dist/base/index.mjs",
+    "./config": "./dist/config.mjs",
+    "./handler": "./dist/handler/index.mjs",
+    "./handler/link": "./dist/handler/link.mjs",
+    "./logger": "./dist/logger/index.mjs",
+    "./middleware": "./dist/middleware/index.mjs",
+    "./plugins/link": "./dist/plugins/link.mjs",
+    "./plugins/server": "./dist/plugins/server.mjs",
+    "./router": "./dist/router/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "vp pack",
+    "test": "vp test run",
+    "lint": "vp check --fix"
+  },
+  "dependencies": {
+    "@orpc/client": "2.0.0-beta.45",
+    "@orpc/contract": "2.0.0-beta.45",
+    "@orpc/json-schema": "2.0.0-beta.45",
+    "@orpc/openapi": "2.0.0-beta.45",
+    "@orpc/pino": "2.0.0-beta.45",
+    "@orpc/server": "2.0.0-beta.45",
+    "@orpc/shared": "2.0.0-beta.45",
+    "@orpc/tanstack-query": "2.0.0-beta.45",
+    "@orpc/zod": "2.0.0-beta.45",
+    "@scalar/api-reference": "^1.76.0",
+    "@workspace/auth": "workspace:*",
+    "@workspace/shared": "workspace:*",
+    "better-result": "^3.0.1",
+    "effect": "^4.0.6",
+    "pino": "^10.4.0",
+    "superjson": "^2.2.6",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@workspace/typescript-config": "workspace:*",
+    "pino-pretty": "^13.2.0"
+  },
+  "peerDependencies": {
+    "typescript": "^6"
+  },
+  "inlinedDependencies": {
+    "@orpc/contract": "2.0.0-beta.45",
+    "@standard-schema/spec": "1.1.0"
+  }
 }

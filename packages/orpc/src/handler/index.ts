@@ -1,54 +1,21 @@
-import {
-	createORPCErrorFromJson,
-	ErrorEvent,
-	isORPCErrorJson,
-	mapEventIterator,
-	toORPCError,
-} from "@orpc/client";
-import type { StandardRPCSerializer } from "@orpc/client/standard";
-import { isAsyncIteratorObject } from "@orpc/shared";
-import SuperJSON from "superjson";
+import { OpenAPIHandler } from "@orpc/openapi/fetch";
+import { API_PREFIX } from "#/config";
+import { serverPlugins } from "#/plugins/server";
+import { router } from "#/router";
 
-export class SuperJSONSerializer
-	implements Pick<StandardRPCSerializer, keyof StandardRPCSerializer>
-{
-	serialize(data: unknown): object {
-		if (isAsyncIteratorObject(data)) {
-			return mapEventIterator(data, {
-				value: async (value: unknown) => SuperJSON.serialize(value),
-				error: async (e) => {
-					return new ErrorEvent({
-						data: SuperJSON.serialize(toORPCError(e).toJSON()),
-						cause: e,
-					});
-				},
-			});
-		}
+export const handler = new OpenAPIHandler(router, {
+  plugins: serverPlugins,
+});
 
-		return SuperJSON.serialize(data);
-	}
+export const fetch = async (request: Request): Promise<Response> => {
+  const { matched, response } = await handler.handle(request, {
+    prefix: API_PREFIX,
+    context: {},
+  });
 
-	deserialize(data: any): unknown {
-		if (isAsyncIteratorObject(data)) {
-			return mapEventIterator(data, {
-				value: async (value) => SuperJSON.deserialize(value),
-				error: async (e) => {
-					if (!(e instanceof ErrorEvent)) return e;
+  if (matched) {
+    return response;
+  }
 
-					const deserialized = SuperJSON.deserialize(e.data as any);
-
-					if (isORPCErrorJson(deserialized)) {
-						return createORPCErrorFromJson(deserialized, { cause: e });
-					}
-
-					return new ErrorEvent({
-						data: deserialized,
-						cause: e,
-					});
-				},
-			});
-		}
-
-		return SuperJSON.deserialize(data);
-	}
-}
+  return new Response("Not Found", { status: 404 });
+};

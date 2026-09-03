@@ -1,3 +1,4 @@
+import "@orpc/openapi/extensions/route";
 import { ORPCError } from "@orpc/server";
 import { auth } from "@workspace/auth";
 import { base } from "#/base";

@@ -1,23 +1,26 @@
 {
-	"name": "@workspace/server",
-	"type": "module",
-	"scripts": {
-		"build": "tsdown",
-		"serve": "bun run src/index.ts",
-		"watch": "bun run --watch src/index.ts",
-		"lint": "biome check"
-	},
-	"dependencies": {
-		"@workspace/orpc": "workspace:*"
-	},
-	"devDependencies": {
-		"@types/bun": "latest"
-	},
-	"peerDependencies": {
-		"typescript": "^6"
-	},
-	"exports": {
-		".": "./dist/index.mjs",
-		"./package.json": "./package.json"
-	}
+  "name": "@workspace/server",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "vp pack",
+    "serve": "bun run src/index.ts",
+    "test": "vp test run",
+    "lint": "vp check --fix",
+    "dev": "bun run --watch src/index.ts"
+  },
+  "dependencies": {
+    "@workspace/auth": "workspace:*",
+    "@workspace/orpc": "workspace:*",
+    "better-result": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^6"
+  }
 }
